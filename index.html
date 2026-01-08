@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuiabá Lavacar | Estética Automotiva</title>
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root {
+            --primary-color: #007bff; /* Azul */
+            --secondary-color: #111; /* Preto */
+            --accent-color: #25D366; /* Verde WhatsApp */
+            --text-light: #f4f4f4;
+            --text-dark: #333;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            background-color: #000; /* Fundo geral preto para combinar com a logo */
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background-color: rgba(17, 17, 17, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-text {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .logo-text span { color: var(--primary-color); }
+
+        nav ul { list-style: none; display: flex; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        nav ul li a:hover { color: var(--primary-color); }
+
+        /* HERO SECTION (FUNDO DESTACADO) */
+        .hero {
+            min-height: 100vh;
+            /* AQUI ESTÁ A MUDANÇA: O filtro escuro passou de 0.85 para 0.5 (ficou mais transparente) */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('logo.jpeg') no-repeat center center;
+            background-size: contain;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 120px 20px 60px 20px;
+            background-color: #000; 
+        }
+
+        .hero-content { max-width: 800px; }
+
+        /* Adicionado sombra no texto para garantir leitura com fundo mais claro */
+        .hero-content h1, .hero-content p {
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .hero-content h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 300; }
+        .hero-content h1 span { font-weight: 700; color: var(--primary-color); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; color: #eee; }
+
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+        .btn-primary { background-color: var(--primary-color); color: #fff; }
+        .btn-primary:hover { background-color: #0056b3; transform: translateY(-3px); }
+
+        /* SEÇÕES */
+        .section { padding: 100px 5%; text-align: center; background-color: #f9f9f9; }
+        .section-dark { background-color: var(--secondary-color); color: var(--text-light); }
+        .section-title { font-size: 2.2rem; margin-bottom: 60px; color: var(--secondary-color); text-transform: uppercase; }
+        .section-dark .section-title { color: var(--text-light); }
+
+        /* CARDS DE SERVIÇO */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--primary-color); }
+        .service-icon { font-size: 3.5rem; margin-bottom: 25px; color: var(--primary-color); }
+
+        /* DIFERENCIAIS */
+        .feature-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+        .feature-item {
+            flex: 1 1 300px;
+            background: rgba(255,255,255,0.03);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .feature-item h3 { color: var(--primary-color); margin-bottom: 15px; }
+
+        /* CONTATO */
+        .contact-container {
+            display: flex; flex-wrap: wrap; gap: 50px; justify-content: center;
+            text-align: left; max-width: 1200px; margin: 0 auto;
+        }
+        .contact-info {
+            flex: 1 1 400px; padding: 30px; background: #fff;
+            border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .contact-item { margin-bottom: 25px; display: flex; align-items: center; }
+        .contact-item div p { font-weight: 700; margin-bottom: 2px; }
+        .contact-icon { margin-right: 20px; color: var(--primary-color); font-size: 1.5rem; width: 30px; text-align: center; }
+        .contact-map {
+            flex: 1 1 500px; height: 450px; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        footer { background-color: #0a0a0a; color: #555; padding: 30px; text-align: center; font-size: 0.9rem; }
+
+        /* WHATSAPP FLUTUANTE */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color);
+            color: white; width: 64px; height: 64px; border-radius: 50%;
+            text-align: center; box-shadow: 2px 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 20px; }
+            nav { display: none; }
+            .hero-content h1 { font-size: 2rem; }
+            .btn { padding: 12px 30px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">Cuiabá <span>Lavacar</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            
+            <h1>O nível máximo de <br><span>Estética Automotiva</span></h1>
+            <p>Lavagem Detalhada e Cuidado Premium no Jardim Aclimação.</p>
+            
+            <a href="https://wa.me/5565999322781?text=Olá,%20gostaria%20de%20agendar%20um%20serviço!" class="btn btn-primary" target="_blank">Agendar Agora</a>
+        </div>
+    </section>
+
+    <section class="section" id="servicos">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🚿</div>
+                <h3>Lavagem Detalhada</h3>
+                <p>Limpeza técnica completa, cuidando de cada detalhe do seu veículo.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Polimento</h3>
+                <p>Devolva o brilho original e remova riscos da pintura.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛋️</div>
+                <h3>Higienização</h3>
+                <p>Limpeza profunda de estofados, teto e carpete.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark" id="diferenciais">
+        <h2 class="section-title">Diferenciais</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>📍 Localização</h3>
+                <p>Fácil acesso no Jardim Aclimação.</p>
+            </div>
+            <div class="feature-item">
+                <h3>💎 Qualidade</h3>
+                <p>Produtos de primeira linha.</p>
+            </div>
+            <div class="feature-item">
+                <h3>🚗 Cuidado</h3>
+                <p>Tratamos seu carro como se fosse nosso.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contato">
+        <h2 class="section-title">Venha nos conhecer</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <p>Endereço</p>
+                        <small>Av. F, Nº 07 - Jardim Aclimação, Cuiabá - MT</small>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <div>
+                        <p>WhatsApp</p>
+                        <small>(65) 99932-2781</small>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">⏰</span>
+                    <div>
+                        <p>Horário de Funcionamento</p>
+                        <small>Seg a Sáb: 07:00 às 18:00</small>
+                    </div>
+                </div>
+                <br>
+                <a href="https://wa.me/5565999322781" class="btn btn-primary" style="width: 100%; text-align: center;">Chamar no WhatsApp</a>
+            </div>
+            
+            <div class="contact-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3842.174665451458!2d-56.0759!3d-15.5857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9376bf9c5c246883%3A0x6291580218764267!2sJardim%20Aclima%C3%A7%C3%A3o%2C%20Cuiab%C3%A1%20-%20MT!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Cuiabá Lavacar. Todos os direitos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/5565999322781?text=Olá,%20vi%20o%20site%20e%20gostaria%20de%20um%20orçamento." class="whatsapp-float" target="_blank">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 17.585C16.897 18.293 15.645 19.389 13.911 19.389C11.391 19.389 9.389 17.387 9.389 14.867C9.389 12.347 11.391 10.345 13.911 10.345C14.735 10.345 15.498 10.559 16.152 10.925L17.472 9.605C16.483 8.825 15.251 8.345 13.911 8.345C10.297 8.345 7.389 11.253 7.389 14.867C7.389 18.481 10.297 21.389 13.911 21.389C16.518 21.389 18.777 19.869 19.895 17.695L17.472 17.585Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12C0 18.627 5.373 24 12 24C18.627 24 24 18.627 24 12C24 5.373 18.627 0 12 0ZM17.456 17.654C16.887 18.351 15.654 19.429 13.951 19.429C11.472 19.429 9.429 17.386 9.429 14.907C9.429 12.428 11.472 10.385 13.951 10.385C14.757 10.385 15.511 10.593 16.16 10.952L17.514 9.598C16.536 8.835 15.308 8.385 13.951 8.385C10.337 8.385 7.429 11.293 7.429 14.907C7.429 18.521 10.337 21.429 13.951 21.429C16.534 21.429 18.771 19.917 19.876 17.76L17.456 17.654Z" fill="white"/>
+        </svg>
+    </a>
+
+</body>
+</html>
