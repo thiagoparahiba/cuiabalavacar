@@ -19,9 +19,23 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: var(--font-family);
-            background-color: #000; /* Fundo geral preto para combinar com a logo */
+            background-color: #000; /* Fundo de segurança preto */
             color: var(--text-dark);
             line-height: 1.6;
+        }
+
+        /* --- SOLUÇÃO BLINDADA PARA O FUNDO --- */
+        /* Imagem inserida via HTML para forçar o carregamento no celular */
+        #bg-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Garante que a logo apareça inteira sem cortar */
+            z-index: -1; /* Joga a imagem para trás de tudo */
+            opacity: 0.5; /* Deixa mais escura para ler o texto (Ajuste aqui se quiser mais claro) */
+            pointer-events: none; /* O clique passa direto pela imagem */
         }
 
         /* CABEÇALHO */
@@ -60,32 +74,28 @@
         }
         nav ul li a:hover { color: var(--primary-color); }
 
-        /* HERO SECTION (FUNDO DESTACADO) */
+        /* HERO SECTION (Transparente para mostrar a imagem de fundo) */
         .hero {
             min-height: 100vh;
-            /* AQUI ESTÁ A MUDANÇA: O filtro escuro passou de 0.85 para 0.5 (ficou mais transparente) */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('logo.jpeg') no-repeat center center;
-            background-size: contain;
-            background-attachment: fixed;
+            background: transparent; /* Removemos o background daqui */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--text-light);
             padding: 120px 20px 60px 20px;
-            background-color: #000; 
         }
 
         .hero-content { max-width: 800px; }
-
-        /* Adicionado sombra no texto para garantir leitura com fundo mais claro */
+        
+        /* Sombra forte no texto para ler em cima da logo */
         .hero-content h1, .hero-content p {
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 10px rgba(0,0,0,1); 
         }
 
         .hero-content h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 300; }
         .hero-content h1 span { font-weight: 700; color: var(--primary-color); }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; color: #eee; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; color: #fff; font-weight: 500; }
 
         /* BOTÕES */
         .btn {
@@ -109,18 +119,11 @@
         .section-title { font-size: 2.2rem; margin-bottom: 60px; color: var(--secondary-color); text-transform: uppercase; }
         .section-dark .section-title { color: var(--text-light); }
 
-        /* CARDS DE SERVIÇO */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
+        /* CARDS */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         .service-card {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            background: #fff; padding: 40px 30px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;
             border-bottom: 3px solid transparent;
         }
         .service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--primary-color); }
@@ -129,30 +132,18 @@
         /* DIFERENCIAIS */
         .feature-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
         .feature-item {
-            flex: 1 1 300px;
-            background: rgba(255,255,255,0.03);
-            padding: 40px 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
+            flex: 1 1 300px; background: rgba(255,255,255,0.03); padding: 40px 30px;
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
         }
         .feature-item h3 { color: var(--primary-color); margin-bottom: 15px; }
 
         /* CONTATO */
-        .contact-container {
-            display: flex; flex-wrap: wrap; gap: 50px; justify-content: center;
-            text-align: left; max-width: 1200px; margin: 0 auto;
-        }
-        .contact-info {
-            flex: 1 1 400px; padding: 30px; background: #fff;
-            border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
+        .contact-container { display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; text-align: left; max-width: 1200px; margin: 0 auto; }
+        .contact-info { flex: 1 1 400px; padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .contact-item { margin-bottom: 25px; display: flex; align-items: center; }
         .contact-item div p { font-weight: 700; margin-bottom: 2px; }
         .contact-icon { margin-right: 20px; color: var(--primary-color); font-size: 1.5rem; width: 30px; text-align: center; }
-        .contact-map {
-            flex: 1 1 500px; height: 450px; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
+        .contact-map { flex: 1 1 500px; height: 450px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
 
         footer { background-color: #0a0a0a; color: #555; padding: 30px; text-align: center; font-size: 0.9rem; }
 
@@ -175,6 +166,8 @@
     </style>
 </head>
 <body>
+
+    <img src="./logo.jpeg" alt="Fundo Cuiabá Lavacar" id="bg-img">
 
     <header>
         <div class="logo-text">Cuiabá <span>Lavacar</span></div>
