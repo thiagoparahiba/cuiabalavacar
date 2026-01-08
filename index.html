@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuiabá Lavacar | Estética Automotiva</title>
     <style>
-        /* --- ESTILOS GERAIS --- */
+        /* --- CONFIGURAÇÕES VISUAIS --- */
         :root {
             --primary-color: #007bff; /* Azul */
             --secondary-color: #111; /* Preto */
@@ -17,28 +17,28 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        
         body {
             font-family: var(--font-family);
-            background-color: #000; /* Fundo de segurança preto */
+            background-color: #000; /* Fundo preto de segurança */
             color: var(--text-dark);
             line-height: 1.6;
         }
 
-        /* --- SOLUÇÃO BLINDADA PARA O FUNDO --- */
-        /* Imagem inserida via HTML para forçar o carregamento no celular */
+        /* --- TRUQUE PARA A LOGO NO FUNDO (FUNCIONA EM CELULAR) --- */
         #bg-img {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Garante que a logo apareça inteira sem cortar */
-            z-index: -1; /* Joga a imagem para trás de tudo */
-            opacity: 0.5; /* Deixa mais escura para ler o texto (Ajuste aqui se quiser mais claro) */
-            pointer-events: none; /* O clique passa direto pela imagem */
+            object-fit: contain; /* Ajusta a imagem sem cortar */
+            z-index: -1; /* Fica atrás de tudo */
+            opacity: 0.4; /* Opacidade para ler melhor as letras */
+            pointer-events: none;
         }
 
-        /* CABEÇALHO */
+        /* --- CABEÇALHO --- */
         header {
             background-color: rgba(17, 17, 17, 0.95);
             padding: 1rem 5%;
@@ -49,16 +49,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
         }
 
         .logo-text {
             color: var(--text-light);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .logo-text span { color: var(--primary-color); }
 
@@ -68,106 +67,162 @@
             text-decoration: none;
             color: var(--text-light);
             font-weight: 500;
-            transition: color 0.3s;
-            text-transform: uppercase;
             font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
         }
         nav ul li a:hover { color: var(--primary-color); }
 
-        /* HERO SECTION (Transparente para mostrar a imagem de fundo) */
+        /* --- TELA INICIAL (HERO) --- */
         .hero {
             min-height: 100vh;
-            background: transparent; /* Removemos o background daqui */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--text-light);
             padding: 120px 20px 60px 20px;
         }
 
         .hero-content { max-width: 800px; }
-        
-        /* Sombra forte no texto para ler em cima da logo */
+
+        /* Sombra forte para o texto não sumir na imagem */
         .hero-content h1, .hero-content p {
-            text-shadow: 0 2px 10px rgba(0,0,0,1); 
+            text-shadow: 2px 2px 4px #000;
+            color: #fff;
         }
 
-        .hero-content h1 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 300; }
-        .hero-content h1 span { font-weight: 700; color: var(--primary-color); }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; color: #fff; font-weight: 500; }
+        .hero-content h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 300; }
+        .hero-content h1 span { font-weight: 800; color: var(--primary-color); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 500; }
 
-        /* BOTÕES */
+        /* --- BOTÕES GERAIS --- */
         .btn {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 12px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+            transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .btn-primary { background-color: var(--primary-color); color: #fff; }
-        .btn-primary:hover { background-color: #0056b3; transform: translateY(-3px); }
+        .btn-primary:hover { transform: scale(1.05); background-color: #0062cc; }
 
-        /* SEÇÕES */
-        .section { padding: 100px 5%; text-align: center; background-color: #f9f9f9; }
-        .section-dark { background-color: var(--secondary-color); color: var(--text-light); }
-        .section-title { font-size: 2.2rem; margin-bottom: 60px; color: var(--secondary-color); text-transform: uppercase; }
-        .section-dark .section-title { color: var(--text-light); }
+        /* --- SEÇÕES GERAIS --- */
+        .section { padding: 80px 5%; text-align: center; background-color: #f4f4f4; }
+        .section-dark { background-color: #111; color: #fff; }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            color: #333;
+        }
+        .section-dark .section-title { color: #fff; }
 
-        /* CARDS */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        /* --- CARDS DE SERVIÇO --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
         .service-card {
-            background: #fff; padding: 40px 30px; border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;
-            border-bottom: 3px solid transparent;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: #333;
         }
-        .service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--primary-color); }
-        .service-icon { font-size: 3.5rem; margin-bottom: 25px; color: var(--primary-color); }
+        .service-icon { font-size: 3rem; margin-bottom: 15px; color: var(--primary-color); }
+        .service-card h3 { margin-bottom: 10px; }
 
-        /* DIFERENCIAIS */
-        .feature-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+        /* --- DIFERENCIAIS --- */
+        .feature-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .feature-item {
-            flex: 1 1 300px; background: rgba(255,255,255,0.03); padding: 40px 30px;
-            border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
+            flex: 1 1 300px;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .feature-item h3 { color: var(--primary-color); margin-bottom: 15px; }
+        .feature-item h3 { color: var(--primary-color); margin-bottom: 10px; }
 
-        /* CONTATO */
-        .contact-container { display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; text-align: left; max-width: 1200px; margin: 0 auto; }
-        .contact-info { flex: 1 1 400px; padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .contact-item { margin-bottom: 25px; display: flex; align-items: center; }
-        .contact-item div p { font-weight: 700; margin-bottom: 2px; }
-        .contact-icon { margin-right: 20px; color: var(--primary-color); font-size: 1.5rem; width: 30px; text-align: center; }
-        .contact-map { flex: 1 1 500px; height: 450px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        /* --- ÁREA GALERIA (SÓ INSTAGRAM) --- */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            width: 100%;
+            max-width: 320px;
+            transition: transform 0.2s;
+        }
+        .btn-social:hover { transform: scale(1.05); opacity: 0.9; }
+        /* Gradiente oficial do Instagram */
+        .btn-insta { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
+        .emoji-icon { margin-right: 10px; font-size: 1.4rem; }
 
-        footer { background-color: #0a0a0a; color: #555; padding: 30px; text-align: center; font-size: 0.9rem; }
+        /* --- CONTATO --- */
+        .contact-container {
+            display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;
+            text-align: left; max-width: 1100px; margin: 0 auto;
+        }
+        .contact-info {
+            flex: 1 1 350px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            color: #333;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .contact-item { margin-bottom: 20px; display: flex; align-items: center; }
+        .contact-item strong { display: block; font-size: 1rem; }
+        .c-icon { margin-right: 15px; font-size: 1.5rem; color: var(--primary-color); }
 
-        /* WHATSAPP FLUTUANTE */
+        .contact-map {
+            flex: 1 1 400px;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #ddd;
+        }
+        
+        /* --- RODAPÉ --- */
+        footer { background: #000; color: #666; padding: 20px; text-align: center; font-size: 0.8rem; }
+
+        /* --- WHATSAPP FLUTUANTE --- */
         .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background-color: var(--accent-color);
-            color: white; width: 64px; height: 64px; border-radius: 50%;
-            text-align: center; box-shadow: 2px 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 2000; display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s;
+            position: fixed; bottom: 25px; right: 25px;
+            background-color: var(--accent-color); color: #fff;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+            z-index: 2000; transition: transform 0.3s;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
 
+        /* --- MOBILE --- */
         @media (max-width: 768px) {
-            header { padding: 1rem 20px; }
+            header { padding: 1rem; }
             nav { display: none; }
             .hero-content h1 { font-size: 2rem; }
-            .btn { padding: 12px 30px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <img src="./logo.jpeg" alt="Fundo Cuiabá Lavacar" id="bg-img">
+    <img src="logo.jpeg" alt="Fundo" id="bg-img">
 
     <header>
         <div class="logo-text">Cuiabá <span>Lavacar</span></div>
@@ -175,7 +230,7 @@
             <ul>
                 <li><a href="#home">Início</a></li>
                 <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#galeria">Galeria</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
@@ -183,37 +238,35 @@
 
     <section class="hero" id="home">
         <div class="hero-content">
-            
             <h1>O nível máximo de <br><span>Estética Automotiva</span></h1>
             <p>Lavagem Detalhada e Cuidado Premium no Jardim Aclimação.</p>
-            
-            <a href="https://wa.me/5565999322781?text=Olá,%20gostaria%20de%20agendar%20um%20serviço!" class="btn btn-primary" target="_blank">Agendar Agora</a>
+            <a href="https://wa.me/5565999322781?text=Olá,%20gostaria%20de%20agendar!" class="btn btn-primary">Agendar Agora</a>
         </div>
     </section>
 
     <section class="section" id="servicos">
-        <h2 class="section-title">Nossos Serviços</h2>
+        <h2 class="section-title">O que fazemos</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">🚿</div>
                 <h3>Lavagem Detalhada</h3>
-                <p>Limpeza técnica completa, cuidando de cada detalhe do seu veículo.</p>
+                <p>Cuidado minucioso com cada parte do seu carro.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">✨</div>
                 <h3>Polimento</h3>
-                <p>Devolva o brilho original e remova riscos da pintura.</p>
+                <p>Brilho intenso e correção de pintura.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🛋️</div>
                 <h3>Higienização</h3>
-                <p>Limpeza profunda de estofados, teto e carpete.</p>
+                <p>Limpeza profunda de bancos e interior.</p>
             </div>
         </div>
     </section>
 
     <section class="section section-dark" id="diferenciais">
-        <h2 class="section-title">Diferenciais</h2>
+        <h2 class="section-title">Por que nós?</h2>
         <div class="feature-grid">
             <div class="feature-item">
                 <h3>📍 Localização</h3>
@@ -221,38 +274,49 @@
             </div>
             <div class="feature-item">
                 <h3>💎 Qualidade</h3>
-                <p>Produtos de primeira linha.</p>
+                <p>Produtos premium e técnica apurada.</p>
             </div>
             <div class="feature-item">
-                <h3>🚗 Cuidado</h3>
-                <p>Tratamos seu carro como se fosse nosso.</p>
+                <h3>🚗 Paixão</h3>
+                <p>Cuidamos do carro como se fosse nosso.</p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="contato">
-        <h2 class="section-title">Venha nos conhecer</h2>
+    <section class="section" id="galeria">
+        <h2 class="section-title">Nossos Resultados</h2>
+        <p>Acompanhe nosso dia a dia, fotos e vídeos dos serviços.</p>
+        
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/cuiabalavacaroficial" target="_blank" class="btn-social btn-insta">
+                <span class="emoji-icon">📸</span> Siga no Instagram
+            </a>
+        </div>
+    </section>
+
+    <section class="section section-dark" id="contato" style="background: rgba(0,0,0,0.8);">
+        <h2 class="section-title">Onde Estamos</h2>
         <div class="contact-container">
             <div class="contact-info">
                 <div class="contact-item">
-                    <span class="contact-icon">📍</span>
+                    <span class="c-icon">📍</span>
                     <div>
-                        <p>Endereço</p>
-                        <small>Av. F, Nº 07 - Jardim Aclimação, Cuiabá - MT</small>
+                        <strong>Endereço</strong>
+                        <span>Av. F, Nº 07 - Jardim Aclimação, Cuiabá - MT</span>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-icon">📞</span>
+                    <span class="c-icon">📞</span>
                     <div>
-                        <p>WhatsApp</p>
-                        <small>(65) 99932-2781</small>
+                        <strong>WhatsApp</strong>
+                        <span>(65) 99932-2781</span>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-icon">⏰</span>
+                    <span class="c-icon">⏰</span>
                     <div>
-                        <p>Horário de Funcionamento</p>
-                        <small>Seg a Sáb: 07:00 às 18:00</small>
+                        <strong>Horário</strong>
+                        <span>Seg a Sáb: 07:00 às 18:00</span>
                     </div>
                 </div>
                 <br>
@@ -260,7 +324,14 @@
             </div>
             
             <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3842.174665451458!2d-56.0759!3d-15.5857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9376bf9c5c246883%3A0x6291580218764267!2sJardim%20Aclima%C3%A7%C3%A3o%2C%20Cuiab%C3%A1%20-%20MT!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0" 
+                    loading="lazy" 
+                    allowfullscreen
+                    src="https://maps.google.com/maps?q=-15.581135749816895,-56.07298278808594&t=&z=17&ie=UTF8&iwloc=&output=embed">
+                </iframe>
             </div>
         </div>
     </section>
@@ -270,7 +341,7 @@
     </footer>
 
     <a href="https://wa.me/5565999322781?text=Olá,%20vi%20o%20site%20e%20gostaria%20de%20um%20orçamento." class="whatsapp-float" target="_blank">
-        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.472 17.585C16.897 18.293 15.645 19.389 13.911 19.389C11.391 19.389 9.389 17.387 9.389 14.867C9.389 12.347 11.391 10.345 13.911 10.345C14.735 10.345 15.498 10.559 16.152 10.925L17.472 9.605C16.483 8.825 15.251 8.345 13.911 8.345C10.297 8.345 7.389 11.253 7.389 14.867C7.389 18.481 10.297 21.389 13.911 21.389C16.518 21.389 18.777 19.869 19.895 17.695L17.472 17.585Z" fill="white"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12C0 18.627 5.373 24 12 24C18.627 24 24 18.627 24 12C24 5.373 18.627 0 12 0ZM17.456 17.654C16.887 18.351 15.654 19.429 13.951 19.429C11.472 19.429 9.429 17.386 9.429 14.907C9.429 12.428 11.472 10.385 13.951 10.385C14.757 10.385 15.511 10.593 16.16 10.952L17.514 9.598C16.536 8.835 15.308 8.385 13.951 8.385C10.337 8.385 7.429 11.293 7.429 14.907C7.429 18.521 10.337 21.429 13.951 21.429C16.534 21.429 18.771 19.917 19.876 17.76L17.456 17.654Z" fill="white"/>
         </svg>
